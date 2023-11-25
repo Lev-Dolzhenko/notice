@@ -4,6 +4,10 @@ body {
   color: #fff;
 }
 
+.none {
+  display: none;
+}
+
 .container {
   position: absolute;
   left: 50%;
@@ -124,6 +128,7 @@ body {
 }
 
 .set-notices__item {
+  position: relative;
   border: 1px solid orange;
   border-radius: 10px;
   padding: 10px;
@@ -131,10 +136,19 @@ body {
 }
 .set-notices__item h3 {
   font-weight: 900;
+  width: 200px;
 }
 .set-notices__item p {
   font-size: 14px;
   word-break: break-all;
+  width: 200px;
+}
+.set-notices__item img {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 20px;
+  cursor: pointer;
 }
 
 .date p {
