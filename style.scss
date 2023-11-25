@@ -1,0 +1,138 @@
+body {
+    background-color: rgb(68, 68, 182);
+
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+}
+
+.notice {
+}
+
+.container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.container--notice {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    row-gap: 10px;
+
+    width: 1000px;
+}
+
+.create-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 420px;
+    height: 140px;
+
+    padding: 20px;
+
+    border: 1px solid orange;
+    border-radius: 20px;
+}
+
+.create-block__inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    height: 100%;
+
+    input {
+        border: 1px solid orange;
+        border-radius: 2px;
+    }
+
+    textarea {
+        border: 1px solid orange;
+        border-radius: 2px;
+        resize: none;
+    }
+}
+
+.title {
+}
+.description {
+}
+
+.create-block__button {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+
+
+    input {
+        border: 1px solid orange;
+        border-radius: 2px;
+    }
+
+    button {
+        border: 1px solid orange;
+        border-radius: 10px;
+        padding: 10px;
+        width: 150px;
+    }
+}
+
+.date-block {
+    text-align: center;
+}
+
+.set-notices {
+    overflow: scroll;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    row-gap: 10px;
+
+    width: 420px;
+    height: 240px;
+
+    padding: 20px;
+
+    border: 1px solid orange;
+    border-radius: 20px;
+}
+
+.set-notices__item {
+    border: 1px solid orange;
+    border-radius: 10px;
+
+    padding: 10px;
+
+    width: 300px;
+
+    h3 {
+        font-weight: 900;
+    }
+
+    p {
+        font-size: 14px;
+        word-break: break-all;
+    }
+
+
+}
+.date {
+    p {
+        font-size: 10px;
+    }
+
+    span {
+        font-weight: 700;
+
+        color: rgb(202, 152, 58)
+    };
+}
