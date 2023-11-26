@@ -22,27 +22,24 @@ const dateInput = document.querySelector('.date-block input');
 const listOfNoteses = document.querySelector('.set-notices');
 const addButton = document.querySelector('.create-block__button button');
 
+let editMode = false;
 document.querySelector('.set-notices').addEventListener('click', function (event) {
-    if (event.target.className === 'image-edit') {
+    if (event.target.tagName === 'BUTTON') {
         let clickedEditButton = event.target;
         let parentContainer = clickedEditButton.closest('.set-notices__item'); // Находим контейнер с помощью closest
         let titleInput = parentContainer.querySelector('h3'); // Находим заголовок в контейнере
         let descriptionInput = parentContainer.querySelector('.description'); // Находим описание в контейнере
-        let clickedCheckButton = parentContainer.querySelector('.image-check');
-        console.log('Click')
-        // let flag = false;
-        // if (flag) {
-        //     clickedCheckButton.classList.remove('none')
-        //     clickedEditButton.classList.add('none')
-        //     titleInput.removeAttribute('contentEditable');
-        //     descriptionInput.removeAttribute('contentEditable');
-        // } else {
-        //     clickedCheckButton.classList.add('none')
-        //     clickedEditButton.classList.remove('none')
-        //     titleInput.setAttribute('contentEditable', true);
-        //     descriptionInput.setAttribute('contentEditable', true);
-        // }
-        // flag = !flag
+        if (editMode) {
+            clickedEditButton.textContent = 'Edit'
+            titleInput.removeAttribute('contentEditable');
+            descriptionInput.removeAttribute('contentEditable');
+        } else {
+            clickedEditButton.textContent = 'Save'
+            titleInput.setAttribute('contentEditable', true);
+            descriptionInput.setAttribute('contentEditable', true);
+            titleInput.focus();
+        }
+        editMode = !editMode;
     }
 });
 
@@ -60,6 +57,7 @@ function createNote(title, description, date) {
     descriptionNote.classList.add('description')
     descriptionNote.textContent = description;
     containerNote.appendChild(descriptionNote);
+
     let containerDate = document.createElement('div');
     containerDate.classList.add('date');
     let currentDate = document.createElement('p');
@@ -68,22 +66,22 @@ function createNote(title, description, date) {
     let month = createDate.getMonth() + 1;
     let year = createDate.getFullYear();
     let formattedDate = `${year}-${day}-${month}`;
+    let currSpan = document.createElement('span');
+    currSpan.textContent = ':date created';
     currentDate.textContent = formattedDate;
+    currentDate.appendChild(currSpan)
     let executeDate = document.createElement('p');
+    let executeSpan = document.createElement('span');
+    executeSpan.textContent = ':date execute';
     executeDate.textContent = date;
+    executeDate.appendChild(executeSpan);
     containerDate.appendChild(currentDate);
     containerDate.appendChild(executeDate);
     containerNote.appendChild(containerDate);
-    let imageEdit = document.createElement('img');
-    imageEdit.classList.add('image-edit')
-    imageEdit.src = '/img/icon-edit.png';
-    containerNote.appendChild(imageEdit)
-    let imageCheck = document.createElement('img');
-    imageCheck.classList.add('image-check')
-    imageCheck.src = '/img/icon-check.png';
-    imageCheck.classList.add('none')
-    containerNote.appendChild(imageCheck)
 
+    let buttonEdit = document.createElement('button');  
+    buttonEdit.textContent = 'edit'
+    containerNote.appendChild(buttonEdit);
     listOfNoteses.appendChild(containerNote)
 }
 
