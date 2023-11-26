@@ -1,26 +1,12 @@
-// const allTexts = document.querySelectorAll('.container p');
-// const allButtons = document.querySelectorAll('.container button');
-
-// for (let i = 0; i < allButtons.length; i++) {
-//     let flag = false;
-//     let currButton = allButtons[i]
-//     currButton.addEventListener('click', function() {
-//         if (flag) {
-//             currButton.textContent = 'Edit';
-//             allTexts[i].removeAttribute('contentEditable');
-//         } else {
-//             currButton.textContent = 'Ok'
-//             allTexts[i].setAttribute('contentEditable', true);
-//         }
-//         editMode = !editMode;
-//     })
-// }
-
 const titleInput = document.querySelector('.create-block__inputs input');
 const areaInput = document.querySelector('.create-block__inputs textarea');
 const dateInput = document.querySelector('.date-block input');
 const listOfNoteses = document.querySelector('.set-notices');
 const addButton = document.querySelector('.create-block__button button');
+
+if (localStorage.getItem('listNotes')) {
+    listOfNoteses.innerHTML = localStorage.getItem('listNotes');
+}
 
 let editMode = false;
 document.querySelector('.set-notices').addEventListener('click', function (event) {
@@ -41,10 +27,12 @@ document.querySelector('.set-notices').addEventListener('click', function (event
         }
         editMode = !editMode;
     }
+    saveHTMLtoLS()
 });
 
 addButton.addEventListener('click', function () {
-    createNote(titleInput.value, areaInput.value, dateInput.value)
+    let note = createNote(titleInput.value, areaInput.value, dateInput.value)
+    saveHTMLtoLS()
 })
 
 function createNote(title, description, date) {
@@ -82,9 +70,14 @@ function createNote(title, description, date) {
     let buttonEdit = document.createElement('button');  
     buttonEdit.textContent = 'edit'
     containerNote.appendChild(buttonEdit);
-    listOfNoteses.appendChild(containerNote)
+    listOfNoteses.appendChild(containerNote);
+
+    // return containerNote;
 }
 
+function saveHTMLtoLS() {
+    localStorage.setItem('listNotes', listOfNoteses.innerHTML)
+}
 
 
 
